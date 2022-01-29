@@ -16,7 +16,7 @@ pipeline {
 			// Building artifact
 				sh '''
 				docker build -t ${imagename} .
-				docker run -p 80 --name jenkins-test -dt ${imagename}
+				docker run -p 80 --name ${containername} -dt ${imagename}
 				'''
 				}
 		}
