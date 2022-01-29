@@ -15,6 +15,20 @@ pipeline {
 				'''
 			}
 		}
+
+		stage ("Testing")
+		{
+			steps {
+				sh '''
+					if [ $STATUS -eq 200 ]; then
+					echo "Site is not up, test failed"
+					exit 1
+					fi
+					echo "Site is up, test succeeded"
+				'''
+			}
+		}
+
 	}
 
 	post {
