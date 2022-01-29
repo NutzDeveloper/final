@@ -44,12 +44,14 @@ pipeline {
 
 			steps {
 				echo "Storing artifact"
-				script {
-				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+				withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+       				def registry_url = "registry.hub.docker.com/"
+        			sh "docker login -u $USER -p $PASSWORD ${registry_url}"
+        			docker.withRegistry("http://${registry_url}", "dockerhub") {
               			sh 'docker push ${imagename}:latest'
-				}
-				}
-				}
+        }
+    }				
+			}
 
 		}
 		stage ("Deploy to Kubernetes")
