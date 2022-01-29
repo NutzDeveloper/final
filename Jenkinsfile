@@ -27,7 +27,7 @@ pipeline {
 
 				sh '''
 
-				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${containername})
+				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${c.id})
 				STATUS=$(curl -sL -w "%{http_code} \n" $IP:80 -o /dev/null)
 
 					if [ $STATUS -ne 200 ]; then
