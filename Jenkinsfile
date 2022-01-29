@@ -67,8 +67,8 @@ pipeline {
 
 				echo "Pipeline has ended, deleting image and containers"
 			sh '''
-				docker stop jenkins-test
-				docker rm jenkins-test -f
+				docker stop containername
+				docker rm containername -f
 			'''
 		}
 	}
