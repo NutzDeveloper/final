@@ -5,7 +5,7 @@ pipeline {
 	{
 		user = "mrred13013"
 		repo = "prework"
-		imagename = "${user}/${repo}"
+		imagename = "${user}/${repo}:${BUILD_NUMBER}"
 		registryCreds = 'dockerhub'
 		containername = "${repo}-test"
 	}
