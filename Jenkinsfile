@@ -56,6 +56,9 @@ pipeline {
 		stage ("Deploy to Kubernetes")
 		{
 			steps {
+				sh '''
+				sed -i 's/latest/${BUILD_NUMBER}/g' deployment.yaml
+				'''
 
 				echo "Deploy to k8s"
 				script {
