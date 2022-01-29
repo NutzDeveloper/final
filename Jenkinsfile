@@ -59,7 +59,7 @@ pipeline {
 
 				echo "Deploy to k8s"
 				script {
-				kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig") }
+				kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig", deleteResource: true) }
 			}
 		}
 	
