@@ -4,6 +4,7 @@ pipeline {
 
 	stages 
 	{
+		def STATUS
 		stage ("Preperation")
 		{
 			steps {
