@@ -1,7 +1,11 @@
 pipeline {
 
 	agent any
-
+	environment 
+	{
+		DOCKERHUB_CREDS=credentials('dockerhub')
+	}
+	
 	stages 
 	{
 		stage ("Build")
@@ -31,7 +35,21 @@ pipeline {
 				'''
 			}
 		}
+		stage ("Store Artifact")
+		{
 
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+		stage ("Deploy to Kubernetes")
+		{
+			steps {
+
+				echo "Deploy to k8s"
+			}
+		}
+	
 	}
 
 	post {
