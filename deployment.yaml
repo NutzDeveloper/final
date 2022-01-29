@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prework-deployment
+  labels:
+    app: prework
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: prework
+  template:
+    metadata:
+      labels:
+        app: prework
+    spec:
+      containers:
+      - name: prework
+        image: mrred13013/prework:latest
+        ports:
+        - containerPort: 80
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: prework-service
+spec:
+  type: NodePort
+  selector:
+    app: prework
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
