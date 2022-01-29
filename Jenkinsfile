@@ -62,7 +62,7 @@ pipeline {
 	//			kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig") }
 	kubeconfig(credentialsId: 'kubekube', serverUrl: '192.168.186.157:6443') {
 	kubectl get nodes
-}
+}}
 			}
 		}
 	
