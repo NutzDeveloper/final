@@ -3,7 +3,9 @@ pipeline {
 	agent any
 	environment 
 	{
-		DOCKERHUB_CREDS=credentials('dockerhub')
+		dockerRegistry = "mrred13013/prework"
+		registryCreds = 'dockerhub'
+
 	}
 	
 	stages 
@@ -39,7 +41,11 @@ pipeline {
 		{
 
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				script {
+							docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+				}
 			}
 		}
 		stage ("Deploy to Kubernetes")
