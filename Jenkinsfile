@@ -8,8 +8,8 @@ pipeline {
 		imagename = "${user}/${repo}"
 		registryCreds = 'dockerhub'
 		containername = "${repo}-test"
+		app
 	}
-	def app 	
 	stages 
 	{
 		stage ("Build")
