@@ -16,4 +16,15 @@ pipeline {
 			}
 		}
 	}
+
+	post {
+		always {
+
+			sh '''
+				echo "Pipeline has ended, deleting image and containers"
+				docker stop jenkins-test
+				docker rm jenkins-test -f
+			'''
+		}
+	}
 }
