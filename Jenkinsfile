@@ -67,8 +67,8 @@ pipeline {
 
 				echo "Pipeline has ended, deleting image and containers"
 			sh '''
-				docker stop containername
-				docker rm containername -f
+				docker stop ${containername}
+				docker rm ${containername} -f
 			'''
 		}
 	}
