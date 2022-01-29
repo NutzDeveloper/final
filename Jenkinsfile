@@ -41,13 +41,17 @@ pipeline {
 		}
 		stage ("Store Artifact")
 		{
-docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+		
+			script {
+				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 
-    def customImage = docker.image(imagename)
+    				def customImage = docker.image(imagename)
 
     /* Push the container to the custom Registry */
-    customImage.push()
-}
+    				customImage.push()
+				
+				}
+			}
 			steps {
 				echo "Storing artifact: ${BUILD_NUMBER}"
 //				sh 'docker login -u mrred13013 -p Rjnbuc13'
