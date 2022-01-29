@@ -1,10 +1,8 @@
 pipeline {
 
 	agent any
-	environment 
-	{
-		def app
-	}
+	
+	def app
 	
 	stages 
 	{
