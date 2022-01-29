@@ -3,9 +3,11 @@ pipeline {
 	agent any
 	environment 
 	{
-		imagename = "mrred13013/prework"
+		user = "mrred13013"
+		repo = "prework"
+		imagename = "${user}/${repo}"
 		registryCreds = 'dockerhub'
-		containername = "${imagename}-test"
+		containername = "${repo}-test"
 	}
 	
 	stages 
