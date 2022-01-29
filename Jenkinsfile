@@ -15,14 +15,14 @@ pipeline {
 		{
 			steps {
 			// Building artifact
-				docker.build(imagename)	
+				script { docker.build(imagename) }
 			}
 		}
 
 		stage ("Test")
 		{
 			steps {
-
+			script {
 				docker.image(imagename).withRun { c ->
 
 				sh '''
@@ -36,6 +36,7 @@ pipeline {
 					fi
 					echo "Site is up, test succeeded"
 				'''
+				}
 				}
 			}
 		}
