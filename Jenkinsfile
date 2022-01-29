@@ -46,7 +46,6 @@ pipeline {
 				echo "Storing artifact"
               			sh 'docker push ${imagename}:latest'
 				}
-			}
 
 		}
 		stage ("Deploy to Kubernetes")
