@@ -5,7 +5,7 @@ pipeline {
 	{
 		user = "mrred13013"
 		repo = "prework"
-		imagename = "${user}/${repo}:${BUILD_NUMBER}"
+		imagename = "${user}/${repo}"
 		registryCreds = 'dockerhub'
 		containername = "${repo}-test"
 	}
@@ -46,7 +46,8 @@ pipeline {
 				script {
 					docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 	    				def customImage = docker.image(imagename)
-					customImage.push()
+					customImage.push(BUILD_NUMBER)
+					customImage.push("latest")
 					}
 				}
 			}
