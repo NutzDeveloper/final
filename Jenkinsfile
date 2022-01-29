@@ -44,7 +44,7 @@ pipeline {
 
 			steps {
 				echo "Storing artifact"
-				sh 'docker login -u mrred13013 -p "Rjnbuc13"
+				sh 'docker login -u mrred13013 -p Rjnbuc13
               			sh 'docker push ${imagename}:latest'
 			}
 
