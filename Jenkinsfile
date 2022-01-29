@@ -3,7 +3,7 @@ pipeline {
 	agent any
 	environment 
 	{
-		dockerRegistry = "mrred13013/prework"
+		imagename = "mrred13013/prework"
 		registryCreds = 'dockerhub'
 
 	}
@@ -13,11 +13,14 @@ pipeline {
 		stage ("Build")
 		{
 			steps {
-			// Building artifact
+			/* Building artifact
 				sh '''
 				docker build -t hello-world:jenkins .
 				docker run -p 80 --name jenkins-test -dt hello-world:jenkins
-				'''
+				''' */
+				script {
+					docker.build imagename
+				}
 			}
 		}
 
