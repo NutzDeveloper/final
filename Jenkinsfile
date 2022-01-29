@@ -43,12 +43,12 @@ pipeline {
 		{
 
 			steps {
-				script {
-							docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
-}
-				}
+				echo "Storing artifact"
+				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {            
+       				       docker.push(imagename)
+              			}			    
 			}
+
 		}
 		stage ("Deploy to Kubernetes")
 		{
