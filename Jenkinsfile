@@ -44,9 +44,11 @@ pipeline {
 
 			steps {
 				echo "Storing artifact"
+				script {
 				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {            
        				       docker.push(imagename)
-              			}			    
+              			}	
+				}
 			}
 
 		}
