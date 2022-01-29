@@ -41,3 +41,5 @@ pipeline {
 			echo "Sending report"
 		}
 	}
+	}
+	}
