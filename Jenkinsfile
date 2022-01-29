@@ -26,7 +26,7 @@ pipeline {
 				docker.image(imagename).withRun { c ->
 
 				sh '''
-				docker logs ${c.id}
+				docker logs ${c}
 				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${c.id})
 				STATUS=$(curl -sL -w "%{http_code} \n" $IP:80 -o /dev/null)
 
