@@ -9,25 +9,26 @@ pipeline {
 		registryCreds = 'dockerhub'
 		containername = "${repo}-test"
 	}
+	
 	stages 
 	{
 		stage ("Build")
 		{
 			steps {
 			// Building artifact
-				script { docker.build(imagename) }
-			}
+				sh '''
+				docker build -t ${imagename} .
+				docker run -p 80 --name ${containername} -dt ${imagename}
+				'''
+				}
 		}
 
 		stage ("Test")
 		{
 			steps {
-			script {
-				docker.image(imagename).withRun { c ->
-
 				sh '''
-				docker logs ${c.name}
-				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${c.id})
+
+				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${containername})
 				STATUS=$(curl -sL -w "%{http_code} \n" $IP:80 -o /dev/null)
 
 					if [ $STATUS -ne 200 ]; then
@@ -36,8 +37,6 @@ pipeline {
 					fi
 					echo "Site is up, test succeeded"
 				'''
-				}
-				}
 			}
 		}
 		stage ("Store Artifact")
