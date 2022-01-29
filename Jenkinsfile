@@ -19,7 +19,6 @@ pipeline {
 				docker run -p 80 --name jenkins-test -dt ${imagename}
 				'''
 				}
-			}
 		}
 
 		stage ("Test")
