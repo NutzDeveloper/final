@@ -8,7 +8,6 @@ pipeline {
 		imagename = "${user}/${repo}"
 		registryCreds = 'dockerhub'
 		containername = "${repo}-test"
-		app
 	}
 	stages 
 	{
@@ -16,7 +15,7 @@ pipeline {
 		{
 			steps {
 			// Building artifact
-				app = docker.build(imagename)	
+				docker.build(imagename)	
 			}
 		}
 
@@ -24,7 +23,7 @@ pipeline {
 		{
 			steps {
 
-				docker.image(app).withRun { c ->
+				docker.image(imagename).withRun { c ->
 
 				sh '''
 
