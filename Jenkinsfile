@@ -58,6 +58,7 @@ pipeline {
 			steps {
 
 				echo "Deploy to k8s"
+				kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig")
 			}
 		}
 	
