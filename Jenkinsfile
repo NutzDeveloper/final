@@ -5,7 +5,7 @@ pipeline {
 	{
 		imagename = "mrred13013/prework"
 		registryCreds = 'dockerhub'
-
+		containername = "${imagename}-test"
 	}
 	
 	stages 
@@ -26,7 +26,7 @@ pipeline {
 			steps {
 				sh '''
 
-				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${imagename})
+				IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${containername})
 				STATUS=$(curl -sL -w "%{http_code} \n" $IP:80 -o /dev/null)
 
 					if [ $STATUS -ne 200 ]; then
