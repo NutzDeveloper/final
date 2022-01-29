@@ -42,6 +42,7 @@ pipeline {
 		stage ("Store Artifact")
 		{
 		
+			steps {
 			script {
 				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 
@@ -52,7 +53,6 @@ pipeline {
 				
 				}
 			}
-			steps {
 				echo "Storing artifact: ${BUILD_NUMBER}"
 //				sh 'docker login -u mrred13013 -p Rjnbuc13'
 //              			sh 'docker push ${imagename}:latest'
