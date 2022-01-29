@@ -5,7 +5,6 @@ pipeline {
 	{
 		dockerRegistry = "mrred13013/prework"
 		registryCreds = 'dockerhub'
-		app = ''
 
 	}
 	
@@ -13,7 +12,6 @@ pipeline {
 	{
 		stage ("Build")
 		{
-				app = docker.build("mrred13013/prework")
 			steps {
 			// Building artifact
 				sh '''
