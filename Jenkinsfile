@@ -44,13 +44,8 @@ pipeline {
 
 			steps {
 				echo "Storing artifact"
-				withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-       				def registry_url = "registry.hub.docker.com/"
-        			sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-        			docker.withRegistry("http://${registry_url}", "dockerhub") {
+				sh 'docker login -u mrred13013 -p "Rjnbuc13"
               			sh 'docker push ${imagename}:latest'
-        }
-    }				
 			}
 
 		}
