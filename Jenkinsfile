@@ -58,7 +58,7 @@ pipeline {
 			steps {
 
 				echo "Deploy to k8s"
-				sh 'sed -i 's/latest/${BUILD_NUMBER}/g' deployment.yaml
+				sh 'sed -i 's/latest/${BUILD_NUMBER}/g' deployment.yaml'
 				script {
 				kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig") }
 				}
