@@ -1,8 +1,13 @@
 pipeline {
 
 	agent any
-	
-	def app
+	environment 
+	{
+		dockerRegistry = "mrred13013/prework"
+		registryCreds = 'dockerhub'
+		app = ''
+
+	}
 	
 	stages 
 	{
@@ -10,7 +15,11 @@ pipeline {
 		{
 			steps {
 			// Building artifact
-			app = docker.build("mrred13013/prework")
+				sh '''
+				docker build -t hello-world:jenkins .
+				docker run -p 80 --name jenkins-test -dt hello-world:jenkins
+				'''
+				app = docker.build("mrred13013/prework")
 			}
 		}
 
