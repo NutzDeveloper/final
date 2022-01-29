@@ -44,7 +44,9 @@ pipeline {
 
 			steps {
 				echo "Storing artifact"
+				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
               			sh 'docker push ${imagename}:latest'
+				}
 				}
 
 		}
